@@ -125,8 +125,9 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
     
 }
-
+var ticks = 0;
 function update() {
+    ticks++;
     //  Collide the player and the stars with the platforms
     var hitPlatform = game.physics.arcade.collide(player, platforms);
     //Make pig bounce off of platforms
@@ -151,7 +152,8 @@ function update() {
         pig.body.velocity.x = -100;
         pig.animations.play('left');
     }
-    if (true) {
+    
+    if (ticks % 50 == 0) {
         let bacon = bacons.create(pig.body.position.x + pig.body.velocity.x / 2, pig.body.position.y,'bacon');
         bacon.scale.x = 0.25;
         bacon.scale.y = 0.25;
