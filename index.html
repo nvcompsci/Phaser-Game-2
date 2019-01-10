@@ -130,13 +130,20 @@ function update() {
     //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(player, stars, collectStar, null, this);
     
-    //Make pig run
+    //Make pig run 
+    if (player.body.position.x < pig.body.position.x) {
+        pig.movingRight = false;
+    } else {
+        pig.movingRight = true;
+    }
     
     
-    if (pig.body.position.x < 50) {
+    if (pig.movingRight) {
         pig.body.velocity.x = 100;
-    } else if (pig.body.position.x > game.world.width - 50) {
+        pig.animations.play('right');
+    } else {
         pig.body.velocity.x = -100;
+        pig.animations.play('left');
     }
     
     //  Reset the players velocity (movement)
