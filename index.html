@@ -91,7 +91,7 @@ function create() {
     player.body.bounce.y = 0.2;
     player.body.gravity.y = 300;
     player.body.collideWorldBounds = true;
-
+    player.health = 3;
     
     //  Our two animations, walking left and right.
     player.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -206,8 +206,13 @@ function collectStar (player, star) {
 }
     
 function baconVsPlayer(player, bacon) {
-    player.kill();
-    game.paused = true;
+    bacon.kill();
+    player.health--;
+    if (player.health == 0) {
+        player.kill();
+        game.paused = true;
+    }
+    
 }
 
 </script>
